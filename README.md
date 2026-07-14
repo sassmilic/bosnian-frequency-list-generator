@@ -33,6 +33,15 @@ Included: all tokens **except**
 Proper nouns (`PROPN`) and foreign/residual tokens (`X`) are **kept**.
 `per_million` is normalized over the total of tokens that survive this filter.
 
+## Run statistics (2026-07-14)
+
+- tokens kept: **992,209,384** (basis for `per_million`)
+- punctuation/symbols excluded: 155,568,426
+- digit-containing lemmas excluded: 21,135,110
+- kept + digit tokens = 1.013 B ≈ the published corpus size of 1.01 B words
+- unique (lemma, UPOS) pairs seen: 5,560,544
+- count at rank 20,000: 2,466 (≈ 2.5 per million)
+
 ## Reproduce
 
 ```sh
