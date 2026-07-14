@@ -27,20 +27,22 @@ conjunction vs. *i* as particle). Merge on `lemma` if you want bare-lemma counts
 Included: all tokens **except**
 
 - punctuation and symbols (UPOS `PUNCT`, `SYM`)
+- proper nouns (UPOS `PROPN` — names of people, places, organizations)
 - tokens whose lemma contains a digit (`2024`, `G6040`, …) — spelled-out
   numerals (*dva*, *prvi*) are kept
 
-Proper nouns (`PROPN`) and foreign/residual tokens (`X`) are **kept**.
+Foreign/residual tokens (`X`) are **kept**.
 `per_million` is normalized over the total of tokens that survive this filter.
 
 ## Run statistics (2026-07-14)
 
-- tokens kept: **992,209,384** (basis for `per_million`)
-- punctuation/symbols excluded: 155,568,426
-- digit-containing lemmas excluded: 21,135,110
-- kept + digit tokens = 1.013 B ≈ the published corpus size of 1.01 B words
-- unique (lemma, UPOS) pairs seen: 5,560,544
-- count at rank 20,000: 2,466 (≈ 2.5 per million)
+- tokens kept: **924,876,479** (basis for `per_million`)
+- punctuation/symbols/proper nouns excluded: 223,116,640
+- digit-containing lemmas excluded: 20,919,801
+- total token lines processed: 1.169 B, consistent with the published corpus
+  size of 1.01 B words (words = total minus punctuation)
+- unique (lemma, UPOS) pairs seen: 3,806,942
+- count at rank 20,000: 1,788 (≈ 1.9 per million)
 
 ## Reproduce
 

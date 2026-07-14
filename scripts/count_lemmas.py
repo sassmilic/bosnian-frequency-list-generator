@@ -10,7 +10,8 @@ Token lines have 6 tab-separated columns:
 Lemma is recovered from lempos by stripping its trailing "-x" POS suffix.
 Structural lines (<text>, <p>, <s>, <g/>, ...) contain no tabs and are skipped.
 
-Filtering: tokens tagged PUNCT/SYM and lemmas containing a digit are excluded.
+Filtering: tokens tagged PUNCT/SYM/PROPN and lemmas containing a digit are
+excluded.
 per_million is normalized over the total of *kept* tokens.
 
 Architecture: rapidgzip parallel decompression -> tarfile (stream mode) ->
@@ -28,7 +29,7 @@ import time
 
 CHUNK_BYTES = 32 * 1024 * 1024
 FLUSH_ENTRIES = 2_000_000  # worker ships its partial dict after this many keys
-EXCLUDED_UPOS = (b"PUNCT", b"SYM")
+EXCLUDED_UPOS = (b"PUNCT", b"SYM", b"PROPN")
 DIGIT_RE = re.compile(rb"\d")
 
 
@@ -178,7 +179,7 @@ def main():
     sys.stderr.write(
         f"done in {elapsed / 60:.1f} min | {fed / 1e9:.2f} GB at "
         f"{fed / 1e6 / elapsed:.0f} MB/s\n"
-        f"tokens kept: {stats['kept']:,} | punct/sym excluded: {stats['punct']:,} | "
+        f"tokens kept: {stats['kept']:,} | punct/sym/propn excluded: {stats['punct']:,} | "
         f"digit lemmas excluded: {stats['digits']:,} | malformed: {stats['malformed']:,}\n"
         f"unique (lemma, upos) pairs: {len(master):,} | wrote top {len(top):,} "
         f"to {args.output}\n"
