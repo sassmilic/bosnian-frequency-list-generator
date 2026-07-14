@@ -13,4 +13,7 @@ $(ARCHIVE):
 $(OUTPUT): $(ARCHIVE) scripts/count_lemmas.py
 	python3 scripts/count_lemmas.py $(ARCHIVE) -o $(OUTPUT) --workers 9 --dec-threads 4
 
-.PHONY: all download
+review:
+	python3 scripts/review_vocab.py
+
+.PHONY: all download review

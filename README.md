@@ -56,6 +56,15 @@ decompression (falls back to stdlib gzip). The corpus is streamed straight out
 of the tarball — the uncompressed vert file is never written to disk. Peak RAM
 is a few GB (worker processes flush partial counts to the merger).
 
+## Vocabulary review
+
+`make review` (or `python3 scripts/review_vocab.py`) walks through the list in
+rank order, one word at a time: **Enter** = know it, **x** = don't,
+**u** = undo, **q**/Ctrl-C = quit. Every keypress is saved immediately to
+`data/review/decisions.tsv` (gitignored), so you can quit anytime and the next
+run resumes at the first unreviewed word. Words you don't know are exported on
+exit to `data/bs_unknown_words.tsv` (same columns as the main list).
+
 ## Source corpus format
 
 The `.vert.tar.gz` contains one vertical-format (Sketch Engine/CWB) file.
