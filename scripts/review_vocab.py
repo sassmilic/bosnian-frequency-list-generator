@@ -109,7 +109,7 @@ def main():
     try:
         while i < total:
             lemma = rows[i][1]
-            sys.stdout.write(f"  {lemma}")
+            sys.stdout.write(f"  {lemma}\t")
             sys.stdout.flush()
             key = sys.stdin.read(1)
             if not key:  # EOF (stdin closed)
